@@ -17,7 +17,7 @@ export default class AddChoiceForm extends Component {
   render() {
     return (
       <div>
-        New Choice : <TextField id = {"1"} name={"newChoice"} type="text" value={this.state.newChoiceName} onChange={this.changeName} required/>
+        New Choice : <TextField id={"1"} name={"newChoice"} type="text" value={this.state.newChoiceName} onChange={this.changeName} required/>
         <RaisedButton primary={true} label={"Add"} onClick={this.addChoice} />
       </div>
     )
@@ -28,7 +28,6 @@ export default class AddChoiceForm extends Component {
   }
 
   addChoice = () => {
-
     this.props.addNewChoice(this.state.newChoiceName);
     this.setState({newChoiceName: ''});
   }

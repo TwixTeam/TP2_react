@@ -4,6 +4,10 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import ChoiceList from "./components/ChoiceList";
 import AddChoiceForm from "./components/AddChoiceForm";
 
+import ChoiceListHelper from './helpers/ChoiceListHelper';
+
+import { choices } from './constants';
+
 import './App.css';
 
 class App extends Component {
@@ -12,11 +16,7 @@ class App extends Component {
     super();
 
     this.state = {
-      choices: [
-        {id: 1, name: "JAVA", vote: 10, percentage: null},
-        {id: 2, name: "C#", vote: 17, percentage: null},
-        {id: 3, name: "C++", vote: 20, percentage: null}
-      ]
+      choices
     }
   }
 
@@ -30,7 +30,7 @@ class App extends Component {
           </header>
           <AddChoiceForm addNewChoice={this.addChoice} />
 
-          <ChoiceList choices={this.state.choices} />
+          <ChoiceList choices={this.state.choices} editVote={this.editVote} />
           {/* Add Custom components */}
 
         
@@ -39,21 +39,14 @@ class App extends Component {
     );
   }
 
-  addChoice = (choiceName) => {
-    const newChoiceList = [
-      ...this.state.choices,
-      {
-        id: Math.floor((Math.random() * 1000) +1),
-        name: choiceName,
-        vote: 0,
-        percentage:null
-      }
-    ];
+  addChoice = (choiceName) => {    
+    this.setState({choices: ChoiceListHelper.addChoice(this.state.choices, choiceName)});
+  }
 
-    console.log(newChoiceList);
-
-    this.setState({choices: newChoiceList});
-      
+  editVote = (id, newVote) => {
+    const test = ChoiceListHelper.editVote(this.state.choices, id, newVote);
+    console.log(test)
+    this.setState({choices: test});
   }
 }
 

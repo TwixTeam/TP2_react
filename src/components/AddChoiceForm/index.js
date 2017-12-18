@@ -20,8 +20,26 @@ export default class AddChoiceForm extends Component {
   render() {
     return (
       <div>
-        <span className="Form-Label">New Choice : </span><TextField className="Form-Input" errorText={this.state.error} hintText={this.state.hint} hintStyle={{color:'#f00'}} id={"1"} type="text" value={this.state.newChoiceName} onChange={this.changeName} required/>
-        <RaisedButton className="AddButton" primary={true} label={"Add"} onClick={this.addChoice} />
+        <span className="Form-Label">New Choice : </span>
+
+        <TextField 
+          className="Form-Input" 
+          errorText={this.state.error} 
+          hintText={this.state.hint} 
+          hintStyle={{color:'#f00'}} 
+          id={"1"} 
+          type="text" 
+          value={this.state.newChoiceName} 
+          onChange={this.changeName} 
+          required
+        />
+
+        <RaisedButton 
+          className="AddButton" 
+          primary={true} 
+          label={"Add"} 
+          onClick={this.addChoice} 
+        />
       </div>
     )
   }

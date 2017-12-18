@@ -10,6 +10,7 @@ const Choice = (props) => (
     <div className="List-Label" >{props.name}</div>  
 
     <TextField 
+      id={props.id.toString()}
       style ={{width: '70px'}} 
       inputStyle={{width:'70px'}} 
       className="List-Vote" 
@@ -28,7 +29,8 @@ Choice.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   value: PropTypes.number.isRequired,
-  percent: PropTypes.number.isRequired
+  percent: PropTypes.number.isRequired,
+  editVote: PropTypes.func.isRequired
 }
 
 export default Choice;

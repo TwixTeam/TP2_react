@@ -48,7 +48,7 @@ const ChoiceListHelper = {
         choice => choice.id === id
           ? choice = {
             ...choice,
-            value: newVote === '' ? 0 : Math.trunc(newVote)
+            value: newVote === '' || newVote < 0 ? 0 : Math.trunc(newVote)
           }
           : choice
       )

@@ -27,7 +27,8 @@ const Choice = (props) => (
 Choice.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired
+  value: PropTypes.number.isRequired,
+  percent: PropTypes.number.isRequired
 }
 
 export default Choice;

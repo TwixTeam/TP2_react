@@ -22,10 +22,16 @@ const ChoiceListHelper = {
     }
 
     else {
+      const newId = Math.max.apply(
+        Math,choiceList.map(
+          (choice) => {return choice.id;}
+        )
+      ) +1;
+
       updatedList = [
         ...choiceList,
         {
-          id: Math.floor((Math.random() * 1000) +1),
+          id: newId,
           name: choiceName,
           value: 0,
           percent: 0
@@ -60,7 +66,7 @@ const ChoiceListHelper = {
     const updatedList = choiceList.map(
       choice => choice = {
         ...choice,
-        percent: ((choice.value/totalVotes) *100 ).toFixed(2)
+        percent: parseFloat(((choice.value/totalVotes) *100 ).toFixed(2))
       }
     );
   

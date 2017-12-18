@@ -1,0 +1,17 @@
+.List-Label {
+  display: inline-block;
+  width: 150px;
+  margin-right:10px;
+  word-wrap: break-word;
+}
+
+.List-Vote {
+  width: 100px;
+  margin-right:10px;
+}
+
+.List-Percent {
+  display: inline-block;
+  width: 50px;
+}
+

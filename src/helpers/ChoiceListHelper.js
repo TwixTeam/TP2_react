@@ -10,26 +10,62 @@ const ChoiceListHelper = {
     )
   ),
 
-  addChoice: (choiceList, choiceName) => ([
-    ...choiceList,
-    {
-      id: Math.floor((Math.random() * 1000) +1),
-      name: choiceName,
-      vote: "0",
-      percentage: 0
-    }
-  ]),
+  addChoice: (choiceList, choiceName) => {   
+    let updatedList = choiceList;
 
-  editVote: (choiceList, id, newVote) => (
-    choiceList.map(
-      choice => choice.id === id
-        ? choice = {
-          ...choice,
-          vote: newVote === '' ? '0' : Math.trunc(newVote).toString()
+    const languageExists = choiceList.find(
+      choice => choice.name === choiceName
+    ) != null;
+
+    if(languageExists) {
+      alert("Ce langage est déjà dans la liste");
+    }
+
+    else {
+      updatedList = [
+        ...choiceList,
+        {
+          id: Math.floor((Math.random() * 1000) +1),
+          name: choiceName,
+          value: 0,
+          percent: 0
         }
-        : choice
+      ];
+    }
+
+    return updatedList;
+  },
+
+  editVote: (choiceList, id, newVote) => {
+    const updatedList = ChoiceListHelper.updatePercentage(
+      choiceList.map(
+        choice => choice.id === id
+          ? choice = {
+            ...choice,
+            value: newVote === '' ? 0 : Math.trunc(newVote)
+          }
+          : choice
+      )
     )
-  )
+
+    return updatedList;
+  },
+
+  updatePercentage: (choiceList) => {
+    const totalVotes = Object.keys(choiceList).reduce(
+      (subTotal, index) => (subTotal + choiceList[index].value)
+      ,0
+    );
+    
+    const updatedList = choiceList.map(
+      choice => choice = {
+        ...choice,
+        percent: ((choice.value/totalVotes) *100 ).toFixed(2)
+      }
+    );
+  
+    return updatedList;
+  }
 };
 
 export default ChoiceListHelper;

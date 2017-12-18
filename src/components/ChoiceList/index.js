@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ChoiceListHelper from '../../helpers/ChoiceListHelper';
 
 const ChoiceList = (props) => (
-  <ul>
+  <ul className="Choice-List" >
     {ChoiceListHelper.displayChoices({...props})}
   </ul>
 );

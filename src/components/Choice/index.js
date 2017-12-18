@@ -1,18 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import TextField from 'material-ui/TextField'
+import TextField from 'material-ui/TextField';
+
+import './Choice.css';
 
 const Choice = (props) => (
   <li>
-    <span>{props.name}</span>  <TextField name={props.name} type="number" min="0" value={props.vote} onChange={(e) => props.editVote(props.id, e.target.value)} />
+    <div className="List-Label" >{props.name}</div>  
+
+    <TextField 
+      style ={{width: '70px'}} 
+      inputStyle={{width:'70px'}} 
+      className="List-Vote" 
+      name={props.name} 
+      type="number" 
+      min="0" 
+      value={props.value} 
+      onChange={(e) => props.editVote(props.id, e.target.value)} 
+    />
+
+    <div className="List-Percent">{props.percent}%</div>
   </li>
 );
 
 Choice.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  vote: PropTypes.string
+  value: PropTypes.number.isRequired
 }
 
 export default Choice;

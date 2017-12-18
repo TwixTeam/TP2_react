@@ -1,22 +1,25 @@
 import React, { Component } from 'react';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+import CustomChart from './components/CustomChart';
 import ChoiceList from "./components/ChoiceList";
 import AddChoiceForm from "./components/AddChoiceForm";
 
 import ChoiceListHelper from './helpers/ChoiceListHelper';
 
-import { choices } from './constants';
+import { Choices } from './constants';
 
 import './App.css';
 
 class App extends Component {
   constructor() {
-    
     super();
 
+    const initialChoices = ChoiceListHelper.updatePercentage(Choices);
+
     this.state = {
-      choices
+      choices: initialChoices
     }
   }
 
@@ -26,15 +29,19 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <h1>Survey</h1>
-            <h2>Quelle est votre langage de programmation favoris ?</h2>
+            <h2>Quelle est votre langage de programmation favori ?</h2>
           </header>
-          <AddChoiceForm addNewChoice={this.addChoice} />
 
-          <ChoiceList choices={this.state.choices} editVote={this.editVote} />
-          {/* Add Custom components */}
+          <div className="App-body">
+            <AddChoiceForm addNewChoice={this.addChoice} />
+            <ChoiceList choices={this.state.choices} editVote={this.editVote} />
+          </div>
 
-        
+          <div className="App-body">
+            <CustomChart choices={this.state.choices} />
+          </div>        
         </div>
+
       </MuiThemeProvider>
     );
   }
@@ -44,9 +51,7 @@ class App extends Component {
   }
 
   editVote = (id, newVote) => {
-    const test = ChoiceListHelper.editVote(this.state.choices, id, newVote);
-    console.log(test)
-    this.setState({choices: test});
+    this.setState({choices: ChoiceListHelper.editVote(this.state.choices, id, newVote)});
   }
 }
 
